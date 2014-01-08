@@ -360,7 +360,7 @@ module Diametric
         end
         first_key = entity.keys.first
         class_name = to_classname(first_key)
-        instance = eval("#{class_name}.new")
+        instance = class_name.constantize.new
         entity.keys.each do |key|
           matched_data = /:([a-zA-Z0-9_\.]+)\/([a-zA-Z0-9_]+)/.match(key)
           instance.send("#{matched_data[2]}=", entity[key])
